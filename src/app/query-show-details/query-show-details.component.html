@@ -1,13 +1,25 @@
 <div id="tv">
-  <h1>List of shows</h1>
-   <!-- <div *@ngFor="let st of showTime">
-    <span>{{st.summary}}</span>
-    <span>{{st.name}}</span>
+           
+  <div *ngFor="let st of showTime" class="sections">
+    
+    <figure>
+      <img [src]='st?.image'>
+    </figure>
 
-    <section>
-      <span>{{st.language}}</span><br>
-      <span>{{st.network}}</span><br>
-      <span>{{st.summary}}</span>
+
+    <section class="title">
+        <span>{{st.name}}({{st.network}})</span><br>
+        <span>
+          <strong><span>Language:</span></strong>
+          {{st.language}}</span><br>
+        <span>
+          <strong><span class="Genres"> Genre:</span></strong>
+           {{st.genres}}</span><br>
+        <span>
+            <strong><span class="Sum"> Synopsis:</span></strong>
+          {{st.summary}}</span>
     </section>
-  </div>  -->
+    
+  </div> 
+
 </div>

@@ -1,8 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <h1>
-    TV Shows
-  </h1>
-</div>
+  <mat-toolbar color="primary">
+    <span>TV Shows</span>
+  </mat-toolbar>
+</div><br>
+<div>
 
-  <app-query-show-details></app-query-show-details>
+  <app-show-search (searchEvent)="doShowSearch($event)"></app-show-search>
+   
+    <app-query-show-details [showTime]="currentShow"></app-query-show-details>
+    
+</div>

@@ -10,10 +10,13 @@ interface IQueryShowDetailsData
   show:{
      name:String,
      language: String,
-     //genres: String[],
-     network:{name:String}
-   },
-    summary:String
+     genres: String[],
+     network:{name:String},
+     image:{medium: String},
+     summary:String,
+     previousepisode:String
+   }
+    
 }
 
 @Injectable({
@@ -27,22 +30,31 @@ export class QueryShowService {
   {
     return this.httpClient.get<IQueryShowDetailsData[]>(`${environment.baseURL}api.tvmaze.com/search/shows?q=${showname}&appId=
     ${environment.appId}`).pipe(map(temp=> this.transformtoIShowDetails(temp)))
-
   }
-  //private since it can be used internally
+  //In this function, for summary the characters like <p>, </p>, <br>, </br> has been removed before displaying
+  //The image variable checks for image being null and also medium being null
   private transformtoIShowDetails(temp:IQueryShowDetailsData[]): Iqueryshowdetails[]
   {
-    let arr: Iqueryshowdetails[]=[];//<{image: String, name: String, language: String, genre: String[], network: String, summary: String}>;
+    let arr: Iqueryshowdetails[]=[];
     for(let i = 0;i < temp.length;i++)
     {
-      //arr[i].image= temp[i].image.medium;
-      arr[i].name= temp[i].show.name;
-      arr[i].language= temp[i].show.language;
-      arr[i].network= temp[i].show.network.name;
-      arr[i].summary= temp[i].summary;
+        var item: Iqueryshowdetails = {
+        name: temp[i].show.name,
+        language: temp[i].show.language?temp[i].show.language:"",
+        network: temp[i].show.network?temp[i].show.network.name:"",
+        summary: (temp[i].show.summary
+        .replace(/<p>/g,"")
+        .replace("</p>","")
+        .replace("<b>","")
+        .replace("</b>",""))?
+        (temp[i].show.summary).replace("<p>","").replace("</p>","").replace("<b>","").replace("</b>",""):"",
+        image: temp[i].show.image?(temp[i].show.image.medium?temp[i].show.image.medium:""):"",
+        genres: [temp[i].show.genres[i]?temp[i].show.genres[i]:""]
+      };
+      arr.push(item);
     }
-    
     return arr;
-   
+    }
+      
   }
-}
+

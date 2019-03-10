@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {Iqueryshowdetails} from '../iqueryshowdetails';
 import { QueryShowService } from '../query-show.service';
 
@@ -9,24 +9,12 @@ import { QueryShowService } from '../query-show.service';
 })
 export class QueryShowDetailsComponent implements OnInit {
 
-  showTime: Iqueryshowdetails[];
-  // console.log(showTime);
-
-  constructor(private queryShowService: QueryShowService) {
-     /*this.show={
-      image:'//static.tvmaze.com/uploads/images/medium_portrait/31/78286.jpg',
-      name: 'Secret City',
-      language:'English',
-      genre:'Thriller',
-      network: 'NetFlix',
-      summary: 'Secret City summary'
-     };*/
-
-   }
+  @Input() showTime: Iqueryshowdetails[];
+  
+  constructor(){}
 
   ngOnInit() {
 
-    this.queryShowService.getCurrentShow("Girls").subscribe(data=> this.showTime = data);
     
   }
 }

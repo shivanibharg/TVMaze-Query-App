@@ -1,0 +1,20 @@
+.sections{
+    position:relative;
+}
+.sections > figure{
+   
+    scroll-margin-block-start: .5em;
+    margin-inline-end: 20px;
+    
+}
+
+section{
+    position: absolute;
+    left: 300px;
+    top:1px;
+    width:75%;
+    -webkit-text-fill-color: blueviolet;
+    background-color: burlywood;
+    
+}
+
