@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShowSearchComponent } from './show-search.component';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ShowSearchComponent', () => {
   let component: ShowSearchComponent;
@@ -8,7 +11,10 @@ describe('ShowSearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShowSearchComponent ]
+      imports: [HttpClientModule, ReactiveFormsModule, FormsModule],
+      declarations: [ ShowSearchComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
     })
     .compileComponents();
   }));
